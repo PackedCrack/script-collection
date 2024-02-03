@@ -23,18 +23,20 @@ if [[ "${makeCustomHome}" != "n" ]]; then
 		sudo mkdir -p "${homeDirectoryLocation}"
 	fi
 
+	sudo chown "${username}":"${username}" "${homeDirectoryLocation}"
+	sudo chmod 550 "${homeDirectoryLocation}"
+
+	uploadDir="${homeDirectoryLocation}/uploads"
+
 	sudo adduser --home "${homeDirectoryLocation}" "${username}"
 else 
 	sudo adduser "${username}"
+	uploadDir="/home/${username}/uploads"
 fi
 
-sudo chown "${username}":"${username}" "${homeDirectoryLocation}"
-sudo chmod 555 "${homeDirectoryLocation}"
 
-uploadDir="${homeDirectoryLocation}/uploads"
 sudo mkdir "${uploadDir}"
 sudo chown "${username}":"${username}" "${uploadDir}"
 sudo chmod 770 "${uploadDir}"
-
 
 sudo systemctl restart vsftpd
