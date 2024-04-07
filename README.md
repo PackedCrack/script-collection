@@ -1,2 +1,2 @@
 # script-collection
-Collection of random scripts that I have used at some point.
+Collection of random scripts that I am using or have used at some point.
