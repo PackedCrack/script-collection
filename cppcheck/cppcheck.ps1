@@ -1,11 +1,11 @@
 Write-Host ""
-Write-Host "---------CPPCHECK - CLIENT----------"
+Write-Host "---------CPPCHECK----------"
 
 If (-Not (Test-Path -Path "build-cppcheck")) {
     New-Item -ItemType Directory -Path "build-cppcheck"
 }
 
-$files = Get-ChildItem -Path src, ../shared -Include *.cpp, *.hpp -Recurse | ForEach-Object { $_.FullName }
+$files = Get-ChildItem -Path src -Include *.cpp, *.hpp -Recurse | ForEach-Object { $_.FullName }
 cppcheck --cppcheck-build-dir=build-cppcheck --error-exitcode=1 --enable=all --suppressions-list=.suppress.cppcheck --inline-suppr --std=c++23 $files
 
 
