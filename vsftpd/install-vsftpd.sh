@@ -65,12 +65,16 @@ if [[ "${enableTLS}" != "n" ]]; then
 	echo "allow_anon_ssl=NO" >> /etc/vsftpd.conf
 	echo "force_local_data_ssl=YES" >> /etc/vsftpd.conf
 	echo "force_local_logins_ssl=YES" >> /etc/vsftpd.conf
+ 	# If on debian12 then tls1.2 and 1.3 options doesnt exist - you have to remove line 69 - 72 and leave line 74 - 76 (tls 1.2 and 1.3 will be allowed implicitly)
 	echo "ssl_tlsv1_3=YES" >> /etc/vsftpd.conf
 	echo "ssl_tlsv1_2=YES" >> /etc/vsftpd.conf
-	echo "ssl_tlsv1_1=NO" >> /etc/vsftpd.conf
+ 	echo "ssl_sslv1=NO" >> /etc/vsftpd.conf	
+  	echo "ssl_tlsv1_1=NO" >> /etc/vsftpd.conf
+  	# Turn of deprecated ssl/tls protocols
+	echo "ssl_tlsv1=NO" >> /etc/vsftpd.conf
 	echo "ssl_sslv3=NO" >> /etc/vsftpd.conf
 	echo "ssl_sslv2=NO" >> /etc/vsftpd.conf
-	echo "ssl_sslv1=NO" >> /etc/vsftpd.conf
+	
 	exit
 fi
 
